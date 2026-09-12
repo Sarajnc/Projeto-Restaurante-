@@ -1,62 +1,72 @@
+from datetime import datetime
+from lista_encadeada import ListaEncadeada
+
 class Comanda:
-    def __init__(self, numero, nome, data, hora):
+    def __init__(self, numero, nome_cliente):
         self.numero = numero
-        self.nome = nome
-        self.data = data
-        self.hora = hora
+        self.nome_cliente = nome_cliente
+        self.data_abertura = datetime.now()
 
-        self.refeicao = Historico()
-        self.bebida = Historico()
+        self.refeicoes = ListaEncadeada()
+        self.bebidas = ListaEncadeada()
 
-    def adicionar_item(self, novo_item):
-        if novo_item.tipo == "refeicao":
-            self.refeicao.adicionar(novo_item)
-        elif novo_item.tipo == "bebida":
-            self.bebida.adicionar(novo_item)
+        self.aberta = True
+        self.data_fechamento = None
+
+    def fechar_comanda(self):
+        if not self.aberta:
+            print('A comanda já está fechada')
+            return
+        
+        self.aberta = False
+        self.data_fechamento = datetime.now()
+        
+    def adicionar_refeicao(self, nova_refeicao):
+        if self.aberta:
+            self.refeicao.adicionar(nova_refeicao)      
+        else:
+            print('Comanda fechada, não é possível adicionar itens')      
+
+    def adicionar_bebida(self, bebida):
+        if self.aberta:
+            self.bebida.adicionar(bebida) 
+        else:
+            print('Comanda fechada, não é possível adicionar itens')
 
     def remover_item(self, item_retirado):
+        if not self.aberta:
+            print('Comanda fechada, não é possível remover itens')
+            return
+
         if item_retirado.tipo == "refeicao":
             self.refeicao.remover(item_retirado)
+
         elif item_retirado.tipo == "bebida":
             self.bebida.remover(item_retirado)
     
 class Item:
-    def __init__(self, nome,tipo):
+    def __init__(self, nome, tipo, preco_item):
         self.nome = nome
         self.tipo = tipo
+        self.preco_item = preco_item
 
-class No:
-    def __init__(self, item):
-        self.item = item
-        self.proximo = None
- 
-class Historico:
+
+class Cardapio:
     def __init__(self):
-        self.inicio = None
+        self.itens = ListaEncadeada()
 
-    def adicionar(self, novo_item):
-        novo_no = No(novo_item)
+    def adicionar_item(self, item):
+        self.itens.adicionar(item)
 
-        if self.inicio is None:
-            self.inicio = novo_no
-        else:
-            novo_no.proximo = self.inicio
-            self.inicio = novo_no
+    def mostrar_cardapio(self):
+        print("\n- CARDÁPIO -")
+        self.itens.mostrar_itens()
 
-    def remover(self, item_retirado):
-        if self.inicio is None:
-            return
-        elif self.inicio.item == item_retirado:
-            self.inicio = self.inicio.proximo
-            return
-
-        no_anterior = self.inicio
-        no_atual = self.inicio.proximo
-
+    def buscar_item(self, nome_buscado):
+        no_atual = self.itens.inicio
         while no_atual is not None:
-            if no_atual.item == item_retirado:
-                no_anterior.proximo = no_atual.proximo
-                return
-
-            no_anterior = no_atual
+            if no_atual.iten.nome == nome_buscado:
+                return  no_atual.item
+            
             no_atual = no_atual.proximo
+        print('Item não encontrado')
