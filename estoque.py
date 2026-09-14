@@ -26,14 +26,14 @@ class Estoque:
         while no_atual is not None:
             registro_atual = no_atual.item
 
-        print("Produto:", registro_atual.ingrediente.nome_produto)
-        print(
-            "Quantidade:",
-            registro_atual.quantidade,
-            registro_atual.ingrediente.unidade
-        )
-        print("Preço da compra: R$", registro_atual.preco_compra)
-        print("Data da compra:", registro_atual.data_compra)
-        print("Data de validade:", registro_atual.data_validade)
+            print("Produto:", registro_atual.ingrediente.nome_produto)
+            print(
+                "Quantidade:",
+                registro_atual.quantidade,
+                registro_atual.ingrediente.unidade
+            )
+            print("Preço da compra: R$", registro_atual.preco_compra)
+            print("Data da compra:", registro_atual.data_compra)
+            print("Data de validade:", registro_atual.data_validade)
 
-        no_atual = no_atual.proximo
+            no_atual = no_atual.proximo
