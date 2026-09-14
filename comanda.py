@@ -23,13 +23,13 @@ class Comanda:
         
     def adicionar_refeicao(self, nova_refeicao):
         if self.aberta:
-            self.refeicao.adicionar(nova_refeicao)      
+            self.refeicoes.adicionar(nova_refeicao)      
         else:
             print('Comanda fechada, não é possível adicionar itens')      
 
     def adicionar_bebida(self, bebida):
         if self.aberta:
-            self.bebida.adicionar(bebida) 
+            self.bebidas.adicionar(bebida) 
         else:
             print('Comanda fechada, não é possível adicionar itens')
 
@@ -39,10 +39,10 @@ class Comanda:
             return
 
         if item_retirado.tipo == "refeicao":
-            self.refeicao.remover(item_retirado)
+            self.refeicoes.remover(item_retirado)
 
         elif item_retirado.tipo == "bebida":
-            self.bebida.remover(item_retirado)
+            self.bebidas.remover(item_retirado)
     
 class Item:
     def __init__(self, nome, tipo, preco_item):
@@ -65,7 +65,7 @@ class Cardapio:
     def buscar_item(self, nome_buscado):
         no_atual = self.itens.inicio
         while no_atual is not None:
-            if no_atual.iten.nome == nome_buscado:
+            if no_atual.item.nome == nome_buscado:
                 return  no_atual.item
             
             no_atual = no_atual.proximo
