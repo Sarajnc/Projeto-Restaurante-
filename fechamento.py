@@ -1,5 +1,5 @@
 from datetime import datetime
-from comanda import Pagamento
+from historico import Pagamento
 
 def calcular_total(comanda):
     total = 0
