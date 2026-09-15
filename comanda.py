@@ -43,15 +43,7 @@ class Comanda:
 
         elif item_retirado.tipo == "bebida":
             self.bebidas.remover(item_retirado)
-
-class Pagamento:
-    def __init__(self, nome_pagador, numero_comanda, forma_pagamento, valor_total, data_hora):
-        self.nome_pagador = nome_pagador
-        self.numero_comanda = numero_comanda
-        self.forma_pagamento = forma_pagamento
-        self.valor_total = valor_total
-        self.data_hora = data_hora
-
+            
 class Item:
     def __init__(self, nome, tipo, preco_item):
         self.nome = nome
