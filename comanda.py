@@ -52,13 +52,6 @@ class Pagamento:
         self.valor_total = valor_total
         self.data_hora = data_hora
 
-class RegistroPagamentos:
-    def __init__(self):
-        self.pagamentos = ListaEncadeada()
-
-    def adicionar_pagamento(self, pagamento):
-        self.pagamentos.adicionar(pagamento)    
-    
 class Item:
     def __init__(self, nome, tipo, preco_item):
         self.nome = nome
