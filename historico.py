@@ -1,5 +1,13 @@
 from lista_encadeada import ListaEncadeada
 
+class Pagamento:
+    def __init__(self, nome_pagador, numero_comanda, forma_pagamento, valor_total, data_hora):
+        self.nome_pagador = nome_pagador
+        self.numero_comanda = numero_comanda
+        self.forma_pagamento = forma_pagamento
+        self.valor_total = valor_total
+        self.data_hora = data_hora
+
 class RegistroPagamentos:
     def __init__(self):
         self.pagamentos = ListaEncadeada()
