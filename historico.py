@@ -8,7 +8,7 @@ class Pagamento:
         self.valor_total = valor_total
         self.data_hora = data_hora
 
-class RegistroPagamentos:
+class HistoricoPagamentos:
     def __init__(self):
         self.pagamentos = ListaEncadeada()
 
