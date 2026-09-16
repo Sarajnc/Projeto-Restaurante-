@@ -1,10 +1,9 @@
 from lista_encadeada import ListaEncadeada, No
 
 class Ingrediente:
-    def __init__(self, nome_produto, unidade):
+    def __init__(self, nome_produto):
         self.nome_produto = nome_produto
-        self.unidade = unidade
-
+        
 class RegistroEstoque:
     def __init__(self, ingrediente, quantidade, preco_compra, preco_venda, data_compra, data_validade):
         self.ingrediente = ingrediente
@@ -93,7 +92,6 @@ class Estoque:
             print(
                 "Quantidade:",
                 registro_atual.quantidade,
-                registro_atual.ingrediente.unidade
             )
             print("Preço da compra: R$", registro_atual.preco_compra)
             print("Preço de venda: R$", registro_atual.preco_venda)
