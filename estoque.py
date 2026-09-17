@@ -1,5 +1,6 @@
 from lista_encadeada import No
 
+#Informações de cada registro do produto
 class RegistroEstoque:
     def __init__(self, nome_produto, quantidade, preco_compra, preco_venda, data_compra, data_validade):
         self.nome_produto = nome_produto
@@ -16,7 +17,9 @@ class RegistroEstoque:
 
         self.quantidade = quantidade
         return True
-
+        
+# organiza os registros pela data de compra
+# mais antigos ficam primeiro
 class FilaEstoque:
     def __init__(self):
         self.inicio_fila = None
