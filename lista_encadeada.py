@@ -1,8 +1,10 @@
+## guarda o item e aponta para o próximo
 class No:
     def __init__(self, item):
         self.item = item
         self.proximo = None
- 
+        
+## adiciona os itens no começo da lista
 class ListaEncadeada:
     def __init__(self):
         self.inicio = None
