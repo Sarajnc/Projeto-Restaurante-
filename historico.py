@@ -12,8 +12,8 @@ class HistoricoPagamentos:
     def __init__(self):
         self.pagamentos = ListaEncadeada()
 
-    def adicionar_pagamento(self, pagamento):
-        self.pagamentos.adicionar(pagamento)
+    def adicionar_pagamento(self, novo_pagamento):
+        self.pagamentos.adicionar(novo_pagamento)
 
 class HistoricoComandas:
     def __init__(self):

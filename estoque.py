@@ -1,12 +1,8 @@
-from lista_encadeada import ListaEncadeada, No
+from lista_encadeada import No
 
-class Ingrediente:
-    def __init__(self, nome_produto):
-        self.nome_produto = nome_produto
-        
 class RegistroEstoque:
-    def __init__(self, ingrediente, quantidade, preco_compra, preco_venda, data_compra, data_validade):
-        self.ingrediente = ingrediente
+    def __init__(self, nome_produto, quantidade, preco_compra, preco_venda, data_compra, data_validade):
+        self.nome_produto = nome_produto
         self.quantidade = quantidade
         self.preco_compra = preco_compra
         self.preco_venda = preco_venda
@@ -28,11 +24,29 @@ class FilaEstoque:
 
     def enfileirar(self, novo_registro):
         novo_no = No(novo_registro)
-        if self.fim_fila is None:
+
+        if self.inicio_fila is None:
             self.inicio_fila = novo_no
             self.fim_fila = novo_no
-        else:
-            self.fim_fila.proximo = novo_no
+            return
+
+        if novo_registro.data_compra < self.inicio_fila.item.data_compra:
+            novo_no.proximo = self.inicio_fila
+            self.inicio_fila = novo_no
+            return
+
+        no_atual = self.inicio_fila
+
+        while (
+            no_atual.proximo is not None
+            and no_atual.proximo.item.data_compra <= novo_registro.data_compra
+        ):
+            no_atual = no_atual.proximo
+
+        novo_no.proximo = no_atual.proximo
+        no_atual.proximo = novo_no
+
+        if novo_no.proximo is None:
             self.fim_fila = novo_no
 
     def desenfileirar(self):
@@ -61,8 +75,8 @@ class Estoque:
 
         while no_atual is not None and restante > 0:
             registro = no_atual.item
-
-            if registro.ingrediente.nome_produto == nome_produto:
+ 
+            if registro.nome_produto == nome_produto:
                 if registro.quantidade <= restante:
                     restante -= registro.quantidade
                     registro.quantidade = 0
@@ -88,10 +102,10 @@ class Estoque:
         while no_atual is not None:
             registro_atual = no_atual.item
 
-            print("Produto:", registro_atual.ingrediente.nome_produto)
+            print("Produto:", registro_atual.nome_produto)
             print(
                 "Quantidade:",
-                registro_atual.quantidade,
+                registro_atual.quantidade
             )
             print("Preço da compra: R$", registro_atual.preco_compra)
             print("Preço de venda: R$", registro_atual.preco_venda)
