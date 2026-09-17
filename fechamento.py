@@ -18,6 +18,7 @@ def fechar_e_pagar(comanda, estoque, forma_pagamento, registro_pagamentos, histo
 
     return novo_pagamento
 
+# Tira do estoque os itens que foram consumidos
 def dar_baixa_estoque(comanda, estoque):    
     no_atual = comanda.refeicoes.inicio
     while no_atual is not None:
